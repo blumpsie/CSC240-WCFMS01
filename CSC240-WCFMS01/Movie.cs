@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSC240_WCFMS01
 {
@@ -60,7 +56,7 @@ namespace CSC240_WCFMS01
         public void display()
         {
             string[] tokens = this.starList.Split(';');
-
+            
             Console.WriteLine("\nYear Realeased: {0}", this.year);
             Console.WriteLine("Actors that starred in this movie:");
             foreach (string star in tokens)
