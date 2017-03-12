@@ -91,7 +91,9 @@ namespace CSC240_WCFMS01
                         displayTitles(theMovies);
                         break;
                     case 2:
-                        Console.WriteLine("NOT IMPLEMENTED YET!!!!");
+                        Console.WriteLine("\nWhat movie would you like to search for?");
+                        String title = Console.ReadLine();
+                        displayMovie(theMovies, title);
                         break;
                     case 3:
                         Console.WriteLine("NOT IMPLEMENTED YET!!!!");
@@ -114,8 +116,8 @@ namespace CSC240_WCFMS01
             } while (!terminate);
         }
 
-        // sorts an array of Movie objects using bubble sort
-        public static void bubbleSort(Movie[] array)
+        // Sorts an array of Movie objects using bubble sort
+        public static void bubbleSort(Movie[] movies)
         {
             bool swapped = true;
             int j = 0;
@@ -126,13 +128,13 @@ namespace CSC240_WCFMS01
                 swapped = false;
                 j++;
 
-                for (int i = 0; i < array.Length - j; i++)
+                for (int i = 0; i < movies.Length - j; i++)
                 {
-                    if (String.Compare(array[i].getTitle(), array[i + 1].getTitle()) > 0)
+                    if (String.Compare(movies[i].getTitle(), movies[i + 1].getTitle(), true) > 0)
                     {
-                        temp = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = temp;
+                        temp = movies[i];
+                        movies[i] = movies[i + 1];
+                        movies[i + 1] = temp;
 
                         swapped = true;
                     }
@@ -140,12 +142,46 @@ namespace CSC240_WCFMS01
             }
         }
 
-        public static void displayTitles(Movie[] array)
+        // Display's the title of all the movies
+        public static void displayTitles(Movie[] movies)
         {
             Console.WriteLine("\n");
-            foreach (Movie movie in array)
+            foreach (Movie movie in movies)
             {
                 Console.WriteLine(movie.getTitle());
+            }
+        }
+
+        public static void displayMovie(Movie[] movies, String title)
+        {
+            bool found = false;
+            int min = 0;
+            int max = movies.Length - 1;
+            int mid = 0;
+
+            while (!found)
+            {
+                if (max <= min)
+                {
+                    Console.WriteLine("\nThat movie does not exist.");
+                    found = true;
+                }
+
+                mid = min + (max - min) / 2;
+
+                if (String.Compare(movies[mid].getTitle(), title, true) < 0)
+                {
+                    min = mid + 1;
+                }
+                else if (String.Compare(movies[mid].getTitle(), title, true) > 0)
+                {
+                    min = mid - 1;
+                }
+                else if (String.Compare(movies[mid].getTitle(), title, true) == 0)
+                {
+                    movies[mid].display();
+                    found = true;
+                }
             }
         }
     }

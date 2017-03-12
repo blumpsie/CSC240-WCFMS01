@@ -31,23 +31,26 @@ namespace CSC240_WCFMS01
             Console.WriteLine("\nPlease enter the title of the movie:");
             this.title = Console.ReadLine();
 
-            Console.WriteLine("\nPlease enter the year that the was realeased:");
+            Console.WriteLine("\nPlease enter the year that {0} was realeased:", this.title);
             this.year = Convert.ToInt32(Console.ReadLine());
 
             Console.WriteLine("\nHow many stars for {0} would you like to enter?", this.title);
             numOfActors = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("\nPlease enter the names for the stars of this movie:");
-            for (int i = 1; i <= numOfActors; i++)
+            if (numOfActors > 0)
             {
-                Console.Write("\n#{0}:", i);
-                if (i < numOfActors)
+                Console.WriteLine("\nPlease enter the names for the stars of this movie:");
+                for (int i = 1; i <= numOfActors; i++)
                 {
-                    this.starList += Console.ReadLine() + ";";
-                }
-                else
-                {
-                    this.starList += Console.ReadLine();
+                    Console.Write("\n#{0}:", i);
+                    if (i < numOfActors)
+                    {
+                        this.starList += Console.ReadLine() + ";";
+                    }
+                    else
+                    {
+                        this.starList += Console.ReadLine();
+                    }
                 }
             }
         }
