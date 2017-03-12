@@ -88,7 +88,7 @@ namespace CSC240_WCFMS01
                 switch (userChoice)
                 {
                     case 1:
-                        Console.WriteLine("NOT IMPLEMENTED YET!!!!");
+                        displayTitles(theMovies);
                         break;
                     case 2:
                         Console.WriteLine("NOT IMPLEMENTED YET!!!!");
@@ -139,5 +139,15 @@ namespace CSC240_WCFMS01
                 }
             }
         }
+
+        public static void displayTitles(Movie[] array)
+        {
+            Console.WriteLine("\n");
+            foreach (Movie movie in array)
+            {
+                Console.WriteLine(movie.getTitle());
+            }
+        }
     }
+
 }
