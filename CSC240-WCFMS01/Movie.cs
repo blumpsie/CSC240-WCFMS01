@@ -28,7 +28,7 @@ namespace CSC240_WCFMS01
         {
             int numOfActors;
 
-            Console.WriteLine("Please enter the title of the movie:");
+            Console.WriteLine("\nPlease enter the title of the movie:");
             this.title = Console.ReadLine();
 
             Console.WriteLine("\nPlease enter the year that the was realeased:");

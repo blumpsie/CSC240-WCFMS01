@@ -32,7 +32,7 @@ namespace CSC240_WCFMS01
             // check to see if the user input is valid
             while(!anotherMovie[0].Equals('Y') && !anotherMovie[0].Equals('N'))
             {
-                Console.WriteLine("\nInvalid Input. \nPlease try again (yes/no)?\n");
+                Console.WriteLine("\nInvalid Input. \nPlease try again (yes/no)?");
                 anotherMovie = Console.ReadLine().ToUpper();
             }
 
@@ -43,7 +43,7 @@ namespace CSC240_WCFMS01
                 tempMovies[count].readIn();
                 count++;
 
-                Console.WriteLine("\nWould you like to eneter another movie (yes/no)?\n");
+                Console.WriteLine("\nWould you like to eneter another movie (yes/no)?");
                 anotherMovie = Console.ReadLine().ToUpper();
             }
 
@@ -54,10 +54,39 @@ namespace CSC240_WCFMS01
                 theMovies[i] = tempMovies[i];
             }
 
+            // Sort the array of Movie objects
+            bubbleSort(theMovies);
+
             // temp display
             foreach (Movie movie in theMovies)
             {
                 movie.display();
+            }
+        }
+
+        // sorts an array of Movie objects using bubble sort
+        public static void bubbleSort(Movie[] array)
+        {
+            bool swapped = true;
+            int j = 0;
+            Movie temp;
+
+            while(swapped)
+            {
+                swapped = false;
+                j++;
+
+                for (int i = 0; i < array.Length - j; i++)
+                {
+                    if (String.Compare(array[i].getTitle(), array[i + 1].getTitle()) > 0)
+                    {
+                        temp = array[i];
+                        array[i] = array[i + 1];
+                        array[i + 1] = temp;
+
+                        swapped = true;
+                    }
+                }
             }
         }
     }
