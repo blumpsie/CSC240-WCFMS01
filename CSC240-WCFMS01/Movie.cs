@@ -23,6 +23,12 @@ namespace CSC240_WCFMS01
             return title;
         }
 
+        // Returns the year the Movie was released
+        public int getYear()
+        {
+            return year;
+        }
+
         // reads in the the user data and assigns it to the fields
         public void readIn()
         {

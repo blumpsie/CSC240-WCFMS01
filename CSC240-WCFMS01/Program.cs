@@ -96,7 +96,9 @@ namespace CSC240_WCFMS01
                         displayMovie(theMovies, title);
                         break;
                     case 3:
-                        Console.WriteLine("NOT IMPLEMENTED YET!!!!");
+                        Console.WriteLine("\nWhat year would you like to see the movies of?");
+                        int year = Convert.ToInt32(Console.ReadLine());
+                        displayYear(theMovies, year);
                         break;
                     case 4:
                         Console.WriteLine("NOT IMPLEMENTED YET!!!!");
@@ -152,6 +154,7 @@ namespace CSC240_WCFMS01
             }
         }
 
+        // Display's the information for a specified movie
         public static void displayMovie(Movie[] movies, String title)
         {
             bool found = false;
@@ -181,6 +184,23 @@ namespace CSC240_WCFMS01
                 {
                     movies[mid].display();
                     found = true;
+                }
+            }
+        }
+
+        // Display's the titles for all movies released in a specified year
+        public static void displayYear(Movie[] movies, int year)
+        {
+            Console.WriteLine("\n");
+            foreach (Movie movie in movies)
+            {
+                if (movie.getYear() == year)
+                {
+                    Console.WriteLine(movie.getTitle());
+                }
+                else
+                {
+                    Console.WriteLine("No movies exist for that year.");
                 }
             }
         }
