@@ -73,5 +73,22 @@ namespace CSC240_WCFMS01
                 Console.WriteLine(star);
             }
         }
+
+        // checks to see if a specific star was in the movie
+        public bool hasStar(string starName)
+        {
+            string[] tokens = starList.Split(';');
+            bool found = false;
+
+            foreach (string star in tokens)
+            {
+                if (star.Equals(starName, StringComparison.OrdinalIgnoreCase))
+                {
+                    found = true;
+                }
+            }
+
+            return found;
+        }
     }
 }

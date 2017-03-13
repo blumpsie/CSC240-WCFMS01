@@ -63,7 +63,7 @@ namespace CSC240_WCFMS01
             do
             {
                 bool validChoice = false;
-                int userChoice = 0;
+                string userChoice;
                 do
                 {
                     Console.Write("\nWEST CHESTER FABULOUS MOVIE SOCIETY DATA MENU\n"
@@ -72,38 +72,44 @@ namespace CSC240_WCFMS01
                                  + "3 - Display the titles of all the movies released in a given year\n"
                                  + "4 - Display the titles of all the movies with a particular star\n"
                                  + "5 - Quit the program\n");
-                    userChoice = Convert.ToInt32(Console.ReadLine());
+                    userChoice = Console.ReadLine();
 
-                    if (userChoice != 1 ||
-                        userChoice != 2 ||
-                        userChoice != 3 ||
-                        userChoice != 4 ||
-                        userChoice != 5)
+                    if (userChoice[0] != '1' ||
+                        userChoice[0] != '2' ||
+                        userChoice[0] != '3' ||
+                        userChoice[0] != '4' ||
+                        userChoice[0] != '5')
                     {
                         validChoice = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not a valid choice. Please try again.");
                     }
 
                 } while (!validChoice);
 
-                switch (userChoice)
+                switch (userChoice[0])
                 {
-                    case 1:
+                    case '1':
                         displayTitles(theMovies);
                         break;
-                    case 2:
+                    case '2':
                         Console.WriteLine("\nWhat movie would you like to search for?");
                         String title = Console.ReadLine();
                         displayMovie(theMovies, title);
                         break;
-                    case 3:
+                    case '3':
                         Console.WriteLine("\nWhat year would you like to see the movies of?");
                         int year = Convert.ToInt32(Console.ReadLine());
                         displayYear(theMovies, year);
                         break;
-                    case 4:
-                        Console.WriteLine("NOT IMPLEMENTED YET!!!!");
+                    case '4':
+                        Console.WriteLine("What star would you like to search for?");
+                        string star = Console.ReadLine();
+                        displayStar(theMovies, star);
                         break;
-                    case 5:
+                    case '5':
                         Console.WriteLine("\nAre you sure (Y/N)?");
                         string exitChoice = Console.ReadLine().ToUpper();
                         if (exitChoice[0] == 'Y')
@@ -155,7 +161,7 @@ namespace CSC240_WCFMS01
         }
 
         // Display's the information for a specified movie
-        public static void displayMovie(Movie[] movies, String title)
+        public static void displayMovie(Movie[] movies, string title)
         {
             bool found = false;
             int min = 0;
@@ -202,6 +208,27 @@ namespace CSC240_WCFMS01
                 {
                     Console.WriteLine("No movies exist for that year.");
                 }
+            }
+        }
+
+        // Display's the titles for all the movies an actor is in
+        public static void displayStar(Movie[] movies, string star)
+        {
+            bool starredInSomething = false;
+
+            Console.WriteLine("\n");
+            foreach (Movie movie in movies)
+            {
+                if (movie.hasStar(star))
+                {
+                    starredInSomething = true;
+                    Console.WriteLine(movie.getTitle());
+                }
+            }
+
+            if(!starredInSomething)
+            {
+                Console.WriteLine("\nThe star wasn't found in any movie.");
             }
         }
     }
